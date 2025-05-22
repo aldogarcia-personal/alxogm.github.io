@@ -34,11 +34,6 @@ function DropdownUser({ userName }: { userName: string }) {
   return (
     <div className="relative">
       <button onClick={toggleDropdown} className="flex flex-col items-center">
-        <img
-          src="/assets/images/users/aldo.jpeg" // Asegúrate de que la ruta sea correcta
-          alt="User"
-          className="w-8 h-8 rounded-full"
-        />
         <span className="text-f5f5dc dark:text-white mt-1">{userName}</span>
       </button>
       {isOpen && (

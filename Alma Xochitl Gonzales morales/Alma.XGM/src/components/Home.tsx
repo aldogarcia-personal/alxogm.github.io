@@ -5,8 +5,8 @@ const Home: React.FC = () => {
   return (
     <>
       <Nav />
-      <div>
-        <h1>Home</h1>
+      <div className="bg-black min-h-screen">
+        <h1 className="text-nav-link">Home</h1>
       </div>
     </>
   );
