@@ -1,5 +1,5 @@
-import React from "react";
-import Nav from "./Nav.tsx";
+import React from 'react'
+import Nav from './Nav'
 
 const Task: React.FC = () => {
   return (
@@ -9,7 +9,7 @@ const Task: React.FC = () => {
         <h1>Task</h1>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Task;
+export default Task

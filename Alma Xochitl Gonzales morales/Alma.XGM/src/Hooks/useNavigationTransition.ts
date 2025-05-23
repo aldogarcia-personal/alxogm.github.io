@@ -1,25 +1,25 @@
-import { useEffect, useState } from "react";
-const useNavigationTransition = () => {
-  const [isTransitioning, setIsTransitioning] = useState(false);
+import { useEffect, useState } from 'react'
+const useNavigationTransition = (): boolean => {
+  const [isTransitioning, setIsTransitioning] = useState(false)
 
   useEffect(() => {
-    const handleStart = () => {
-      setIsTransitioning(true);
-    };
+    const handleStart = (): void => {
+      setIsTransitioning(true)
+    }
 
-    const handleEnd = () => {
-      setIsTransitioning(false);
-    };
+    const handleEnd = (): void => {
+      setIsTransitioning(false)
+    }
 
-    window.addEventListener("beforeunload", handleStart);
-    window.addEventListener("unload", handleEnd);
+    window.addEventListener('beforeunload', handleStart)
+    window.addEventListener('unload', handleEnd)
 
     return () => {
-      window.removeEventListener("beforeunload", handleStart);
-      window.removeEventListener("unload", handleEnd);
-    };
-  }, []);
+      window.removeEventListener('beforeunload', handleStart)
+      window.removeEventListener('unload', handleEnd)
+    }
+  }, [])
 
-  return isTransitioning;
-};
-export default useNavigationTransition;
+  return isTransitioning
+}
+export default useNavigationTransition
