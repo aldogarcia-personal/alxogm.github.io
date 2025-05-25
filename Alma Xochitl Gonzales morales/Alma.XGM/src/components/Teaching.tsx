@@ -1,5 +1,5 @@
 import Nav from "./Nav"
-function OutReach() {
+function Teaching() {
   return (
     <>
       <Nav />
@@ -7,5 +7,4 @@ function OutReach() {
     </>
   )
 }
-
-export default OutReach
+export default Teaching

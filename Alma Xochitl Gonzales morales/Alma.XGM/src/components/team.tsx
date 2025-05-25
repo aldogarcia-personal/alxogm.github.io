@@ -1,20 +1,13 @@
-import { Desplegar } from './icons'
-interface userName {
-  userName: string
-}
-
-const DropdownUser: React.FC<userName> = ({ userName }): JSX.Element => {
+import Nav from "./Nav"
+function CV() {
   return (
     <>
-      <img
-        src={`../assets/users/${userName}.jpeg`}
-        alt='user'
-        className='h-10 w-10 rounded-full'
-      />
-      <Desplegar />
-      <label htmlFor='' />
+      <Nav />
+      <div className="">
+        <h1>Curriculum Vitae</h1>
+      </div>
     </>
   )
 }
 
-export default DropdownUser
+export default CV
