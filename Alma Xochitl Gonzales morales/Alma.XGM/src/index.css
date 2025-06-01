@@ -569,3 +569,23 @@ video {
 .custom-width-70 {
   width: 70%;
 }
+
+/* Para translateY negativo de 15vh */
+.-translate-y-12vh {
+  transform: translateY(-12vh);
+}
+
+.-translate-y-15vh {
+  transform: translateY(-15vh);
+}
+
+.-translate-y-16vh {
+  transform: translateY(-16vh);
+}
+.-translate-y-20vh {
+  transform: translateY(-20vh);
+}
+
+.-translate-y-80vh {
+  transform: translateY(-0.1vh);
+}

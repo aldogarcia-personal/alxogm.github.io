@@ -8,6 +8,11 @@ interface LanguageState {
 }
 
 export const useLanguageStore = create<LanguageState>((set) => ({
-  language: "es",
-  setLanguage: (lang) => set({ language: lang }),
+  language: (localStorage.getItem("language") as Language)
+    ? (localStorage.getItem("language") as Language)
+    : "es", // Default to 'es' if not set
+  setLanguage: (lang) => {
+    localStorage.setItem("language", lang)
+    set({ language: lang })
+  },
 }))

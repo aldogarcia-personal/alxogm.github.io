@@ -1,25 +1,9 @@
-import { useEffect, useState } from 'react'
-const useNavigationTransition = (): boolean => {
-  const [isTransitioning, setIsTransitioning] = useState(false)
+// src/Hooks/useMenuToggle.ts
+import { useState } from "react"
 
-  useEffect(() => {
-    const handleStart = (): void => {
-      setIsTransitioning(true)
-    }
-
-    const handleEnd = (): void => {
-      setIsTransitioning(false)
-    }
-
-    window.addEventListener('beforeunload', handleStart)
-    window.addEventListener('unload', handleEnd)
-
-    return () => {
-      window.removeEventListener('beforeunload', handleStart)
-      window.removeEventListener('unload', handleEnd)
-    }
-  }, [])
-
-  return isTransitioning
+export function useMenuToggle() {
+  const [open, setOpen] = useState(false)
+  const toggleMenu = () => setOpen((prev) => !prev)
+  const closeMenu = () => setOpen(false)
+  return { open, toggleMenu, closeMenu }
 }
-export default useNavigationTransition

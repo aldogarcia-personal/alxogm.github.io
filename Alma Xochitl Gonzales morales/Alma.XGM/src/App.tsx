@@ -1,7 +1,10 @@
 import React from "react"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 import { useSyncLanguageRoutes } from "./Hooks/useSyncLanguageRoutes"
+import { useLanguageStore } from "./store/languageStore"
 import { routeMap } from "./routes/routeMap"
+import { useSyncI18nWithStore } from "./Hooks/useSyncI18nWithStore"
+import { useTranslation } from "react-i18next"
 import Home from "./components/Home"
 import Research from "./components/Research"
 import OutReach from "./components/OutReach"
@@ -11,10 +14,25 @@ import Contact from "./components/contact"
 import CV from "./components/team"
 
 const App: React.FC = () => {
+  const { language } = useLanguageStore()
+  const { i18n } = useTranslation()
+  useSyncI18nWithStore()
   useSyncLanguageRoutes(routeMap)
+
+  if (language !== i18n.language) {
+    console.log("language:", language, "i18n.language:", i18n.language)
+    return null
+  }
   return (
     <div>
       <Routes>
+        {/* Rutas redirigidas */}
+        <Route
+          path="/"
+          element={
+            <Navigate to={language === "es" ? "/inicio" : "/home"} replace />
+          }
+        />
         {/* Rutas en inglés */}
         <Route path="/home" element={<Home />} />
         <Route path="/research" element={<Research />} />
