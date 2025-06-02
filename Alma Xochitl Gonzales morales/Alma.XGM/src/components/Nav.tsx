@@ -2,7 +2,6 @@ import SelectLanguage from "./language"
 import { Link } from "react-router-dom"
 import { useLanguageStore } from "../store/languageStore"
 import { useMenuToggle } from "../Hooks/useNavigationTransition"
-import { useMenuAnimation } from "../Hooks/useFloatingNavMenu"
 import HomeIcon from "@mui/icons-material/Home"
 import ScienceIcon from "@mui/icons-material/Science"
 import CampaignIcon from "@mui/icons-material/Campaign"
@@ -42,7 +41,14 @@ const routes: Record<"es" | "en", RouteItem[]> = {
 
 function Nav(): JSX.Element {
   const { language } = useLanguageStore()
-  const { open, buttonOnTop, handleMenu } = useMenuAnimation()
+  const {
+    open,
+    animate,
+    showCloseIcon,
+    showNavContent,
+    handleMenu,
+    closeMenu,
+  } = useMenuToggle()
 
   return (
     <nav
@@ -52,44 +58,50 @@ function Nav(): JSX.Element {
     >
       <button
         onClick={handleMenu}
-        className={`fixed z-50 w-14 h-14 rounded-full bg-btn text-white flex items-center justify-center shadow-lg transition-all duration-500
+        className={`fixed z-50 w-14 h-14 rounded-full bg-btn text-white flex items-center justify-center shadow-lg transition-all duration-500 
         ${
-          buttonOnTop
-            ? "top-4 right-4 bottom-auto"
-            : "bottom-4 right-4 top-auto"
-        }
+          animate
+            ? "btn-animate-up"
+            : open
+            ? "btn-bottom-vh-10 right-4 top-auto"
+            : "btn-top-vh-10 right-4 bottom-auto "
+        }     
       `}
         aria-label={open ? "Cerrar menú" : "Abrir menú"}
       >
-        {open ? (
+        {showCloseIcon ? (
           <CloseIcon className="text-white" />
         ) : (
           <MenuIcon className="text-white" />
         )}
       </button>
-      {open && (
-        <div className="bg-nav-blue flex justify-between items-center p-4 shadow-md">
-          <h1 className="text-nav-logo">Alma Xochitl Gonzales Morales</h1>
-          <img src="" alt="" />
-          <div className="flex items-center space-x-4">
-            <ul className="flex space-x-6">
-              {routes[language].map((route: RouteItem) => (
-                <li key={route.path}>
-                  <Link
-                    to={route.path}
-                    onClick={handleMenu}
-                    className="text-nav-link no-underline hover:text-nav-hover p-4"
-                  >
-                    {route.icon}
-                    <span>{route.label}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="flex items-center space-x-4">
-            <SelectLanguage />
-          </div>
+      {showCloseIcon && (
+        <div className="bg-nav-blue fixed left-0 right-0 top-0 shadow-md w-full h-[70px] z-40 animate-nav-bg ">
+          {showNavContent && (
+            <div className="bg-nav-blue flex justify-between items-center p-4 shadow-md">
+              <h1 className="text-nav-logo">Alma Xochitl Gonzales Morales</h1>
+              <img src="" alt="" />
+              <div className="flex items-center space-x-4">
+                <ul className="flex space-x-6">
+                  {routes[language].map((route: RouteItem) => (
+                    <li key={route.path}>
+                      <Link
+                        to={route.path}
+                        onClick={closeMenu}
+                        className="text-nav-link no-underline hover:text-nav-hover p-4"
+                      >
+                        {route.icon}
+                        <span>{route.label}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="flex items-center space-x-4">
+                <SelectLanguage />
+              </div>
+            </div>
+          )}
         </div>
       )}
     </nav>

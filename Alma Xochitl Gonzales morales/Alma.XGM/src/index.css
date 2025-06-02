@@ -589,3 +589,50 @@ video {
 .-translate-y-0-1vh {
   transform: translateY(-0.1vh);
 }
+
+.btn-bottom-vh-10 {
+  bottom: -85vh; /* Cambia 30 por el valor que desees */
+  top: auto;
+}
+.btn-top-vh-10 {
+  top: 85vh; /* Cambia 30 por el valor que desees */
+  bottom: auto;
+}
+
+@keyframes navBtnUp {
+  0% {
+    top: 85vh;
+    right: 1rem;
+    top: auto;
+  }
+  50% {
+    bottom: -5rem;
+    right: 1rem;
+    top: auto;
+  }
+  100% {
+    bottom: auto;
+    right: 1rem;
+    bottom: -85vh;
+  }
+}
+
+.btn-animate-up {
+  animation: navBtnUp 3s forwards;
+}
+
+@keyframes navBgAppear {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+.animate-nav-bg {
+  animation: navBgAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: top;
+}
