@@ -17,10 +17,10 @@ export function useMenuToggle() {
       animTimeout.current = setTimeout(() => {
         setOpen(true)
         setAnimate(false)
-      }, 700) // igual a la duración de la animación
+      }, 200) // igual a la duración de la animación
       navContentTimeout.current = setTimeout(() => {
         setShowNavContent(true)
-      }, 700)
+      }, 800)
     } else {
       setOpen(false)
       setAnimate(false)

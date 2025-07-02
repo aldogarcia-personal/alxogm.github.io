@@ -11,7 +11,7 @@ import OutReach from "./components/OutReach"
 import Teaching from "./components/Teaching"
 import Blog from "./components/blog"
 import Contact from "./components/contact"
-import CV from "./components/team"
+import CV from "./components/CurriculumVitae"
 
 const App: React.FC = () => {
   const { language } = useLanguageStore()

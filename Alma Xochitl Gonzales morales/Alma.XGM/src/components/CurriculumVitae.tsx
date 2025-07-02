@@ -1,7 +1,6 @@
 import Nav from "./Nav"
 import { useMenuContext } from "../context/MenuContext"
-
-function Blog() {
+function CV() {
   const { showCloseIcon } = useMenuContext()
   return (
     <>
@@ -11,10 +10,10 @@ function Blog() {
           showCloseIcon ? "translate-y-70px" : ""
         } bg-black min-h-screen `}
       >
-        <h1 className="text-nav-link">Blog</h1>
+        <h1 className="text-nav-link">Curriculum Vitae</h1>
       </div>
     </>
   )
 }
 
-export default Blog
+export default CV

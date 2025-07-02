@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
+  safelist: ["translate-y-70px"],
   theme: {
     extend: {
       colors: {
@@ -19,6 +20,7 @@ export default {
         btn: "#FF6F00",
         "btn-hover": "#B0BEC5",
         "nav-text-hover": "#263238",
+        "nav-text-active": "#00B0FF",
       },
     },
   },

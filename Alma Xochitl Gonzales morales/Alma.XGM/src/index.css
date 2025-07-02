@@ -601,7 +601,7 @@ video {
 
 @keyframes navBtnUp {
   0% {
-    top: 85vh;
+    bottom: 90vh;
     right: 1rem;
     top: auto;
   }
@@ -618,7 +618,7 @@ video {
 }
 
 .btn-animate-up {
-  animation: navBtnUp 3s forwards;
+  animation: navBtnUp 3.8s forwards;
 }
 
 @keyframes navBgAppear {
@@ -633,6 +633,14 @@ video {
 }
 
 .animate-nav-bg {
-  animation: navBgAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: navBgAppear 0s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: top;
+}
+
+.translate-y-70px {
+  transform: translateY(70px) !important;
+}
+
+.-translate-y-70px {
+  transform: translateY(-70px) !important;
 }

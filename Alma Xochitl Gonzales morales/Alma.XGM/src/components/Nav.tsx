@@ -1,7 +1,7 @@
 import SelectLanguage from "./language"
 import { Link } from "react-router-dom"
 import { useLanguageStore } from "../store/languageStore"
-import { useMenuToggle } from "../Hooks/useNavigationTransition"
+import { useMenuContext } from "../context/MenuContext"
 import HomeIcon from "@mui/icons-material/Home"
 import ScienceIcon from "@mui/icons-material/Science"
 import CampaignIcon from "@mui/icons-material/Campaign"
@@ -48,7 +48,17 @@ function Nav(): JSX.Element {
     showNavContent,
     handleMenu,
     closeMenu,
-  } = useMenuToggle()
+  } = useMenuContext()
+
+  //log para ver comportamiento del nav y su estado (incluido el botón para cerrar y abrir)
+  console.log(
+    "showCloseIcon:",
+    showCloseIcon,
+    "showNavContent:",
+    showNavContent,
+    "open: ",
+    open
+  )
 
   return (
     <nav
@@ -56,30 +66,22 @@ function Nav(): JSX.Element {
         open ? "-translate-y-0-1vh" : ""
       }`}
     >
-      <button
-        onClick={handleMenu}
-        className={`fixed z-50 w-14 h-14 rounded-full bg-btn text-white flex items-center justify-center shadow-lg transition-all duration-500 
-        ${
-          animate
-            ? "btn-animate-up"
-            : open
-            ? "btn-bottom-vh-10 right-4 top-auto"
-            : "btn-top-vh-10 right-4 bottom-auto "
-        }     
-      `}
-        aria-label={open ? "Cerrar menú" : "Abrir menú"}
-      >
-        {showCloseIcon ? (
-          <CloseIcon className="text-white" />
-        ) : (
-          <MenuIcon className="text-white" />
-        )}
-      </button>
       {showCloseIcon && (
         <div className="bg-nav-blue fixed left-0 right-0 top-0 shadow-md w-full h-[70px] z-40 animate-nav-bg ">
           {showNavContent && (
             <div className="bg-nav-blue flex justify-between items-center p-4 shadow-md">
-              <h1 className="text-nav-logo">Alma Xochitl Gonzales Morales</h1>
+              <h1 className="">
+                <Link
+                  to="/cv"
+                  className="text-nav-logo hover:underline focus:underline transition-colors duration-200 hover:text-nav-text-active focus:text-nav-text-active"
+                  tabIndex={0}
+                  aria-label="Ir al CV"
+                  onClick={closeMenu}
+                  style={{ textDecoration: "none" }}
+                >
+                  Alma Xochitl Gonzales Morales
+                </Link>
+              </h1>
               <img src="" alt="" />
               <div className="flex items-center space-x-4">
                 <ul className="flex space-x-6">
@@ -104,6 +106,25 @@ function Nav(): JSX.Element {
           )}
         </div>
       )}
+      <button
+        onClick={handleMenu}
+        className={`fixed z-[9999] w-14 h-14 rounded-full bg-btn text-white flex items-center justify-center shadow-lg bottom-4 right-4 transition-all duration-500 
+          ${
+            animate
+              ? "btn-animate-up"
+              : open
+              ? "btn-bottom-vh-10 right-4 top-auto opacity-100"
+              : "btn-top-vh-10 right-4 bottom-auto opacity-100"
+          }
+      `}
+        aria-label={open ? "Cerrar menú" : "Abrir menú"}
+      >
+        {showCloseIcon ? (
+          <CloseIcon className="text-white" />
+        ) : (
+          <MenuIcon className="text-white" />
+        )}
+      </button>
     </nav>
   )
 }
