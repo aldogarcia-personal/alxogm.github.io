@@ -1,9 +1,19 @@
 import React from "react"
 import Nav from "./Nav"
 import { useMenuContext } from "../context/MenuContext"
+import { useEffect } from "react"
+import Lenis from "lenis"
 
 const Home: React.FC = () => {
   const { showCloseIcon } = useMenuContext()
+  useEffect(() => {
+    const lenis = new Lenis({
+      autoRaf: true,
+    })
+    return () => {
+      lenis.destroy?.()
+    }
+  }, [])
   return (
     <>
       <Nav />
@@ -11,9 +21,7 @@ const Home: React.FC = () => {
         className={` relative transition-all duration-200 z-[-1] transform ${
           showCloseIcon ? "translate-y-70px" : ""
         } bg-black min-h-screen `}
-      >
-        <h1 className="text-nav-link">Home</h1>
-      </div>
+      ></div>
     </>
   )
 }

@@ -3,9 +3,9 @@ import { useState, useRef } from "react"
 
 export function useMenuToggle() {
   const [animate, setAnimate] = useState(false)
-  const [open, setOpen] = useState(false)
-  const [showCloseIcon, setShowCloseIcon] = useState(false)
-  const [showNavContent, setShowNavContent] = useState(false)
+  const [open, setOpen] = useState(true)
+  const [showCloseIcon, setShowCloseIcon] = useState(true)
+  const [showNavContent, setShowNavContent] = useState(true)
   const iconTimeout = useRef<NodeJS.Timeout | null>(null)
   const animTimeout = useRef<NodeJS.Timeout | null>(null)
   const navContentTimeout = useRef<NodeJS.Timeout | null>(null)
